@@ -21,6 +21,7 @@ pipeline {
             }
             steps {
                 sh 'echo "Staging!"'
+                sh 'cat seed.py'
             }
         }
     }
