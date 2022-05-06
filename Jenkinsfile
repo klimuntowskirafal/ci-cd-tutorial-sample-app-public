@@ -15,6 +15,14 @@ pipeline {
                 sh 'echo "Testing!"'
             }
         }
+        stage('Staging') {
+            when{
+                branch "staging"
+            }
+            steps {
+                sh 'echo "Staging!"'
+            }
+        }
     }
     post {
         always {
