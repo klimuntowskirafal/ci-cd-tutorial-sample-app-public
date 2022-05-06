@@ -24,6 +24,14 @@ pipeline {
                 sh 'cat seed.py'
             }
         }
+        stage('Production') {
+            when{
+                branch "main"
+            }
+            steps {
+                sh 'echo "Production on Main!"'
+            }
+        }
     }
     post {
         always {
