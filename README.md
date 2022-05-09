@@ -121,8 +121,8 @@ or use the automated deploy feature:
 For more information about using Python on Heroku, see these Dev Center articles:
 
  - [Python on Heroku](https://devcenter.heroku.com/categories/python)
-# Release notes:
+## Release notes:
 new feature in new branch -> staging -> main (production)
 
-#Set-up github webhook with jenkins 
-- https://www.youtube.com/watch?v=aDmeeVDrp0o
+## Set-up github webhook with jenkins 
+https://www.youtube.com/watch?v=aDmeeVDrp0o
