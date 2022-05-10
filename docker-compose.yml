@@ -15,6 +15,16 @@ services:
     networks:
       - cicd_net
 
+  flask-app:
+    container_name: flask-app
+    image: flask-app-image
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    networks:
+      - cicd_net
+
 #  remote_host:
 #    container_name: remote-host-aws
 #    image: remote-host
