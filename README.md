@@ -129,13 +129,14 @@ From Jenkins running on local machine, this repo provides pipeline to manage dev
 ## Release notes:
 - new feature in new branch -> staging -> main (production)
 
-## Set-up github webhook with jenkins 
-https://www.youtube.com/watch?v=aDmeeVDrp0o
-
-## Run Jenkins on a container with docker installed in it
+## Start containers 
 ```
 docker compose up -d
 ```
-From jenkins-cicd container try to run ```docker ps```. If permission denied chown to 1000:1000 to the file /var/run/docker.sock on the container executing as a root user.
+1. This will start flask and jenkins ccontainers. 
+2. From jenkins-cicd container try to run ```docker ps```. If permission denied chown to 1000:1000 to the file /var/run/docker.sock on the container executing as a root user.
+3. Go to ```localhost:8000``` and see if you receive ```{"status":"ok"}```
+4. Go '''localhost:8080''' and set up jenkins with multibranch pipeline - https://www.youtube.com/watch?v=aDmeeVDrp0o
 
-
+## Seting up github webhook with jenkins running locally and ngrok 
+https://www.youtube.com/watch?v=yMNJeWeE0qI
