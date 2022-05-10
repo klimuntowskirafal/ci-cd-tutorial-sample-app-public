@@ -15,6 +15,14 @@ pipeline {
                 sh 'echo "Testing!"'
             }
         }
+        stage("PR's"){
+            when{
+                branch "PR-*"
+            }
+            steps{
+                echo 'this only runs for PRs'
+            }
+        }
         stage('Staging') {
             when{
                 branch "staging"
