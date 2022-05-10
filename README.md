@@ -121,8 +121,21 @@ or use the automated deploy feature:
 For more information about using Python on Heroku, see these Dev Center articles:
 
  - [Python on Heroku](https://devcenter.heroku.com/categories/python)
+ 
+
+## Info:
+From Jenkins running on local machine, this repo provides pipeline to manage dev, staging, production environments
+
 ## Release notes:
-new feature in new branch -> staging -> main (production)
+- new feature in new branch -> staging -> main (production)
 
 ## Set-up github webhook with jenkins 
 https://www.youtube.com/watch?v=aDmeeVDrp0o
+
+## Run Jenkins on a container with docker installed in it
+```
+docker compose up -d
+```
+From jenkins-cicd container try to run ```docker ps```. If permission denied chown to 1000:1000 to the file /var/run/docker.sock on the container executing as a root user.
+
+

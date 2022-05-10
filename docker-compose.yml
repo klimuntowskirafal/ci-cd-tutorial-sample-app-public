@@ -1,0 +1,48 @@
+version: '3'
+services:
+  jenkins-cicd:
+    container_name: jenkins-cicd
+    image: jenkins/docker
+    build:
+      context: pipeline
+    ports:
+      - "8080:8080"
+    volumes:
+      - "$PWD/jenkins_data:/var/jenkins_home"
+      # we map docker.sock to container, so we can use docker commands, as this handles everything
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - cicd_net
+
+  flask-app:
+    container_name: flask-app
+    image: flask-app-image
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    networks:
+      - cicd_net
+
+#  remote_host:
+#    container_name: remote-host-aws
+#    image: remote-host
+#    build:
+#      context: centos
+#    volumes:
+#      - "$PWD/centos/script-mysql-backup.sh:/tmp/script-mysql-backup.sh"
+#    networks:
+#      - net
+
+#  db_host:
+#    container_name: db
+#    image: mysql:5.7
+#    environment:
+#      - "MYSQL_ROOT_PASSWORD=1234"
+#    volumes:
+#      - "$PWD/db_data:/var/lib/mysql"
+#    networks:
+#      - net
+
+networks:
+  cicd_net:

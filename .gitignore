@@ -1,3 +1,4 @@
+jenkins_data/*
 *.pem
 .idea
 # Byte-compiled / optimized / DLL files
