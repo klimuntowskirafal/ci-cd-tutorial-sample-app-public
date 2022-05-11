@@ -141,3 +141,9 @@ docker compose up -d
 ## Seting up github webhook with jenkins running locally and ngrok 
 https://www.youtube.com/watch?v=yMNJeWeE0qI
 - TIP: adjust ngrok https tunnel address in github app created if your ngrok terminal was closed
+
+## Pepare AWS ECR
+1. authenticate yourself with ```aws configure```
+2. login to ECR
+```aws ecr get-login-password --region REGIONHERE!!!! | docker login --username AWS --password-stdin AWS_ACCOUNTID_HERE!!!!.dkr.ecr.REGIONHERE!!!.amazonaws.com```
+3. create registries for storing previously created images and push images to aws ecr
