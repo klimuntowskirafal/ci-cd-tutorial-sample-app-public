@@ -147,3 +147,13 @@ https://www.youtube.com/watch?v=yMNJeWeE0qI
 2. login to ECR
 ```aws ecr get-login-password --region REGIONHERE!!!! | docker login --username AWS --password-stdin AWS_ACCOUNTID_HERE!!!!.dkr.ecr.REGIONHERE!!!.amazonaws.com```
 3. create registries for storing previously created images and push images to aws ecr
+
+## Build ECS Cluster
+``` 
+aws cloudformation create-stack \
+--stack-name cicd-example-stack-name \
+--template-body file://./aws-cf-template.yaml \ 
+--capabilities CAPABILITY_NAMED_IAM \
+--region eu-central-1 \
+--parameters ParameterKey=SubnetID,ParameterValue=your-default-subnet-id ParameterKey=ImageName,ParameterValue=your-image-uri
+```
