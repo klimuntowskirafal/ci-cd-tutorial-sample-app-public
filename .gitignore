@@ -1,3 +1,4 @@
+.DS_Store
 jenkins_data/*
 *.pem
 .idea
