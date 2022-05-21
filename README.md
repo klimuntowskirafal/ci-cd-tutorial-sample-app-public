@@ -151,9 +151,9 @@ https://www.youtube.com/watch?v=yMNJeWeE0qI
 ## Build ECS Cluster
 ``` 
 aws cloudformation create-stack \
---stack-name example-stack-name \
+--stack-name cicd-example-stack-name \
 --template-body file://./aws-cf-template.yaml \ 
 --capabilities CAPABILITY_NAMED_IAM \
 --region eu-central-1 \
---parameters 'ParameterKey=SubnetID,ParameterValue=your-default-subnet-id'
+--parameters ParameterKey=SubnetID,ParameterValue=your-default-subnet-id ParameterKey=ImageName,ParameterValue=your-image-uri
 ```

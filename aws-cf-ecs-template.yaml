@@ -2,6 +2,8 @@ AWSTemplateFormatVersion: "2010-09-09"
 Parameters:
   SubnetID:
     Type: String
+  ImageName:
+    Type: String
 
 Resources:
   Cluster:
@@ -43,8 +45,8 @@ Resources:
       NetworkMode: awsvpc
       ExecutionRoleArn: !Ref ExecutionRole
       ContainerDefinitions:
-        - Name: deployment-example-container
-          Image: 025628008566.dkr.ecr.eu-central-1.amazonaws.com/flask-app-image:latest
+        - Name: cicd-deployment-example-container
+          Image: !Ref ImageName
           PortMappings:
             - ContainerPort: 8000
           LogConfiguration:
