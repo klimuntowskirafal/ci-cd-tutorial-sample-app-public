@@ -141,6 +141,7 @@ docker compose up -d
 ## Seting up github webhook with jenkins running locally and ngrok 
 https://www.youtube.com/watch?v=yMNJeWeE0qI
 - TIP: adjust ngrok https tunnel address in github app created if your ngrok terminal was closed
+- authenticate with github apps https://www.youtube.com/watch?v=aDmeeVDrp0o
 
 ## Pepare AWS ECR
 1. authenticate yourself with ```aws configure```
