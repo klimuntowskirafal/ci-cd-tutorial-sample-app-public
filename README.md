@@ -129,6 +129,11 @@ From Jenkins running on local machine, this repo provides pipeline to manage dev
 ## Release notes:
 - new feature in new branch -> staging -> main (production)
 
+## Set up Jenkins on EC2
+- create stack with jenkins-cf-deployment.yaml through CF. This will create EC2, install Jenkins, open specific ports and create Security Groups. Explanation http://beta.awsdocs.com/infrastructure_as_code/cloudformation/applications/jenkins_cf_deployment/
+- configure Jenkins multibranch pipeline - https://www.youtube.com/watch?v=B_2FXWI6CWg
+- add webhooks for automating running the jobs on branches
+
 ## Start containers 
 ```
 docker compose up -d
@@ -141,6 +146,7 @@ docker compose up -d
 ## Seting up github webhook with jenkins running locally and ngrok 
 https://www.youtube.com/watch?v=yMNJeWeE0qI
 - TIP: adjust ngrok https tunnel address in github app created if your ngrok terminal was closed
+- authenticate with github apps https://www.youtube.com/watch?v=aDmeeVDrp0o
 
 ## Pepare AWS ECR
 1. authenticate yourself with ```aws configure```
