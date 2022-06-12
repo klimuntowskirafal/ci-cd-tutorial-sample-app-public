@@ -124,17 +124,12 @@ For more information about using Python on Heroku, see these Dev Center articles
  
 
 ## Info:
-From Jenkins running on local machine, this repo provides pipeline to manage dev, staging, production environments
+From Jenkins running on ec2, this repo provides pipeline to manage dev, staging, production environments
 
 ## Release notes:
 - new feature in new branch -> staging -> main (production)
 
-## Set up Jenkins on EC2
-- create stack with jenkins-cf-deployment.yaml through CF. This will create EC2, install Jenkins, open specific ports and create Security Groups. Explanation http://beta.awsdocs.com/infrastructure_as_code/cloudformation/applications/jenkins_cf_deployment/
-- configure Jenkins multibranch pipeline - https://www.youtube.com/watch?v=B_2FXWI6CWg
-- add webhooks for automating running the jobs on branches
-
-## Start containers 
+## Run app localy
 ```
 docker compose up -d
 ```
@@ -143,14 +138,16 @@ docker compose up -d
 3. Go to ```localhost:8000``` and see if you receive ```{"status":"ok"}```
 4. Go '''localhost:8080''' and set up jenkins with multibranch pipeline - https://www.youtube.com/watch?v=aDmeeVDrp0o
 
-## Seting up github webhook with jenkins running locally and ngrok 
-https://www.youtube.com/watch?v=yMNJeWeE0qI
-- TIP: adjust ngrok https tunnel address in github app created if your ngrok terminal was closed
-- authenticate with github apps https://www.youtube.com/watch?v=aDmeeVDrp0o
+# Preaparation for deployment
+## Set up Jenkins on EC2
+- create stack with jenkins-cf-deployment.yaml through CF. This will create EC2, install Jenkins, open specific ports and create Security Groups. Explanation http://beta.awsdocs.com/infrastructure_as_code/cloudformation/applications/jenkins_cf_deployment/
+- configure Jenkins multibranch pipeline - https://www.youtube.com/watch?v=B_2FXWI6CWg
+
+## Authenticate to AWS in Jenkins
+use of CloudBees AWS Credentials Plugin - https://www.youtube.com/watch?v=iiF2iQV-3eM
 
 ## Pepare AWS ECR
-1. authenticate yourself with ```aws configure```
-2. login to ECR
+1. login to ECR
 ```aws ecr get-login-password --region REGIONHERE!!!! | docker login --username AWS --password-stdin AWS_ACCOUNTID_HERE!!!!.dkr.ecr.REGIONHERE!!!.amazonaws.com```
 3. create registries for storing previously created images and push images to aws ecr
 

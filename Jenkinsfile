@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    options { disableConcurrentBuilds() }
     stages {
         stage('Build') {
             steps {
@@ -13,6 +14,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'echo "Testing!"'
+                sh 'aws --version'
             }
         }
         stage("PR's"){
@@ -29,7 +31,12 @@ pipeline {
             }
             steps {
                 sh 'echo "Staging!"'
-                sh 'cat seed.py'
+                sh 'aws cloudformation create-stack \
+                    --stack-name cicd-example-stack-name \
+                    --template-body file://./aws-cf-ecs-template.yaml \
+                    --capabilities CAPABILITY_NAMED_IAM \
+                    --region eu-central-1 \
+                    --parameters ParameterKey=SubnetID,ParameterValue=subnet-d76dc19b ParameterKey=ImageName,ParameterValue=025628008566.dkr.ecr.eu-central-1.amazonaws.com/flask-app-image:latest'
             }
         }
         stage('Production') {
