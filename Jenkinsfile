@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        CREDS_FOR_AWS = credentials("ci-cd-tutorial-sample-app-public-aws-creds") #your_creds_name_here
+    }
     options { disableConcurrentBuilds() }
     stages {
         stage('Build') {
