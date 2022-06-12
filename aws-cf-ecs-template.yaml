@@ -1,8 +1,11 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Parameters:
   SubnetID:
-    Type: String
+    Description: VPC Subnet that this stack will be launched in.
+    Type: AWS::EC2::Subnet::Id
+    AllowedPattern: "[a-z0-9-]*"
   ImageName:
+    Description: Image that will be used to run container on ECS.
     Type: String
 
 Resources:
