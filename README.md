@@ -143,6 +143,9 @@ docker compose up -d
 - create stack with jenkins-cf-deployment.yaml through CF. This will create EC2, install Jenkins, open specific ports and create Security Groups. Explanation http://beta.awsdocs.com/infrastructure_as_code/cloudformation/applications/jenkins_cf_deployment/
 - configure Jenkins multibranch pipeline - https://www.youtube.com/watch?v=B_2FXWI6CWg
 
+## Add github webhook 
+https://hevodata.com/learn/jenkins-github-webhook/#steps
+
 ## Authenticate to AWS in Jenkins
 use of CloudBees AWS Credentials Plugin - https://www.youtube.com/watch?v=iiF2iQV-3eM
 
