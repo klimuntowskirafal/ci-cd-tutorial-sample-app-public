@@ -14,6 +14,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'echo "Testing!"'
+                sh 'aws --version'
             }
         }
         stage("PR's"){
