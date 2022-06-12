@@ -138,7 +138,7 @@ docker compose up -d
 3. Go to ```localhost:8000``` and see if you receive ```{"status":"ok"}```
 4. Go '''localhost:8080''' and set up jenkins with multibranch pipeline - https://www.youtube.com/watch?v=aDmeeVDrp0o
 
-# Preaparation for deployment
+# Preparation for deployment
 ## Set up Jenkins on EC2
 - create stack with jenkins-cf-deployment.yaml through CF. This will create EC2, install Jenkins, open specific ports and create Security Groups. Explanation http://beta.awsdocs.com/infrastructure_as_code/cloudformation/applications/jenkins_cf_deployment/
 - configure Jenkins multibranch pipeline - https://www.youtube.com/watch?v=B_2FXWI6CWg
