@@ -35,7 +35,7 @@ pipeline {
             steps {
                 sh 'echo "Staging!"'
                 sh 'aws cloudformation create-stack \
-                    --stack-name cicd-example-stack-name-dev \
+                    --stack-name cicd-example-stack-name-staging \
                     --template-body file://./aws-cf-ecs-template.yaml \
                     --capabilities CAPABILITY_NAMED_IAM \
                     --region eu-central-1 \
@@ -49,7 +49,7 @@ pipeline {
             steps {
                 sh 'echo "Production on Main!"'
                 sh 'aws cloudformation create-stack \
-                    --stack-name cicd-example-stack-name-dev \
+                    --stack-name cicd-example-stack-name \
                     --template-body file://./aws-cf-ecs-template.yaml \
                     --capabilities CAPABILITY_NAMED_IAM \
                     --region eu-central-1 \
