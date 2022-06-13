@@ -17,7 +17,10 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'echo "Testing!"'
-                sh 'aws cloudformation describe-stacks --region eu-central-1 --stack-name cicd-example-stack-name-test'
+                script {
+                    env.STACK_INFO = aws cloudformation describe-stacks --region eu-central-1 --stack-name cicd-example-stack-name-test
+                }
+                echo "${env.STACK_INFO}"
             }
         }
         stage("PR's"){
