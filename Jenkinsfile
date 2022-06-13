@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         CREDS_FOR_AWS = credentials("ci-cd-tutorial-sample-app-public-aws-creds")
+        STACK_INFO = "aws cloudformation describe-stacks --region eu-central-1 --stack-name cicd-example-stack-name-test"
     }
     options { disableConcurrentBuilds() }
     stages {
@@ -17,9 +18,6 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'echo "Testing!"'
-                script {
-                    env.STACK_INFO = aws cloudformation describe-stacks --region eu-central-1 --stack-name cicd-example-stack-name-test
-                }
                 echo "${env.STACK_INFO}"
             }
         }
