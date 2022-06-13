@@ -7,12 +7,17 @@ Parameters:
   ImageName:
     Description: Image that will be used to run container on ECS.
     Type: String
+  Flag:
+    Description: Flag to be used to differenciate between staging deployment and production
+    Type: String
 
 Resources:
   Cluster:
     Type: AWS::ECS::Cluster
     Properties:
-      ClusterName: ci-cd-tutorial-sample-app-public
+      ClusterName: !Sub
+        - 'ci-cd-tutorial-sample-app-public-${Flag}'
+        - Flag: !Ref Flag
   LogGroup:
     Type: AWS::Logs::LogGroup
     Properties:
