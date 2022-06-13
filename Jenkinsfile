@@ -40,7 +40,9 @@ pipeline {
                         --template-body file://./aws-cf-ecs-template.yaml \
                         --capabilities CAPABILITY_NAMED_IAM \
                         --region eu-central-1 \
-                        --parameters ParameterKey=SubnetID,ParameterValue=subnet-d76dc19b ParameterKey=ImageName,ParameterValue=025628008566.dkr.ecr.eu-central-1.amazonaws.com/flask-app-image:latest'
+                        --parameters ParameterKey=SubnetID,ParameterValue=subnet-d76dc19b \
+                        ParameterKey=ImageName,ParameterValue=025628008566.dkr.ecr.eu-central-1.amazonaws.com/flask-app-image:latest \
+                        ParameterKey=Flag,ParameterValue=staging'
                     }
                     catch (AlreadyExistsException) {
                         echo 'Stack already exist'
@@ -51,7 +53,9 @@ pipeline {
                             --template-body file://./aws-cf-ecs-template.yaml \
                             --capabilities CAPABILITY_NAMED_IAM \
                             --region eu-central-1 \
-                            --parameters ParameterKey=ImageName,UsePreviousValue=true ParameterKey=SubnetID,ParameterValue=subnet-d76dc19b'
+                            --parameters ParameterKey=SubnetID,ParameterValue=subnet-d76dc19b \
+                            ParameterKey=ImageName,ParameterValue=025628008566.dkr.ecr.eu-central-1.amazonaws.com/flask-app-image:latest \
+                            ParameterKey=Flag,ParameterValue=staging'
                         }
                         catch (ValidationError) {
                             echo 'Nothing to be updated on the staging stack'
