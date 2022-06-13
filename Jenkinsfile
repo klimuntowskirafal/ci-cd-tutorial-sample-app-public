@@ -61,8 +61,8 @@ pipeline {
                         --parameters ParameterKey=SubnetID,ParameterValue=subnet-d76dc19b ParameterKey=ImageName,ParameterValue=025628008566.dkr.ecr.eu-central-1.amazonaws.com/flask-app-image:latest'
                     }
                     catch (AlreadyExistsException) {
-                        sh 'Stack already exist'
-                        sh 'Trying to update'
+                        echo 'Stack already exist'
+                        echo 'Trying to update'
                         try {
                             sh 'aws cloudformation update-stack \
                             --stack-name cicd-example-stack-name-production \
