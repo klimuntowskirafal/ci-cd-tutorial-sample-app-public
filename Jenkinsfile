@@ -60,7 +60,7 @@ pipeline {
                         --region eu-central-1 \
                         --parameters ParameterKey=SubnetID,ParameterValue=subnet-d76dc19b ParameterKey=ImageName,ParameterValue=025628008566.dkr.ecr.eu-central-1.amazonaws.com/flask-app-image:latest'
                     }
-                    catch AlreadyExistsException {
+                    catch (AlreadyExistsException) {
                         sh 'aws cloudformation update-stack \
                             --stack-name cicd-example-stack-name-production \
                             --template-body file://./aws-cf-ecs-template.yaml \
