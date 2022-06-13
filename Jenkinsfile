@@ -2,7 +2,6 @@ pipeline {
     agent any
     environment {
         CREDS_FOR_AWS = credentials("ci-cd-tutorial-sample-app-public-aws-creds")
-//         STACK_INFO = "aws cloudformation describe-stacks --region eu-central-1 --stack-name cicd-example-stack-name-test"
     }
     options { disableConcurrentBuilds() }
     stages {
@@ -18,7 +17,6 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'echo "Testing!"'
-//                 echo "${env.STACK_INFO}"
             }
         }
         stage("PR's"){
@@ -35,14 +33,6 @@ pipeline {
             }
             steps {
                 sh 'echo "Staging!"'
-                /*
-                sh 'aws cloudformation create-stack \
-                    --stack-name cicd-example-stack-name-staging \
-                    --template-body file://./aws-cf-ecs-template.yaml \
-                    --capabilities CAPABILITY_NAMED_IAM \
-                    --region eu-central-1 \
-                    --parameters ParameterKey=SubnetID,ParameterValue=subnet-d76dc19b ParameterKey=ImageName,ParameterValue=025628008566.dkr.ecr.eu-central-1.amazonaws.com/flask-app-image:latest'
-                */
             }
         }
         stage('Production') {
@@ -72,7 +62,7 @@ pipeline {
                             --parameters ParameterKey=ImageName,UsePreviousValue=true ParameterKey=SubnetID,ParameterValue=subnet-d76dc19b'
                         }
                         catch (ValidationError) {
-                            echo 'Nothing to be updated on the stack'
+                            echo 'Nothing to be updated on the production stack'
                         }
                     }
                 }
