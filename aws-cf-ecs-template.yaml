@@ -21,11 +21,15 @@ Resources:
   LogGroup:
     Type: AWS::Logs::LogGroup
     Properties:
-      LogGroupName: ci-cd-log-group
+      LogGroupName: !Sub
+        - 'ci-cd-log-group-${Flag}'
+        - Flag: !Ref Flag
   ExecutionRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: ci-cd-example-role
+      RoleName: !Sub
+        - 'ci-cd-example-role-${Flag}'
+        - Flag: !Ref Flag
       AssumeRolePolicyDocument:
         Statement:
           - Effect: Allow
@@ -37,7 +41,9 @@ Resources:
   ContainerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupName: CiCdSecurotyGroup
+      GroupName: !Sub
+        - 'CiCdSecurityGroup-${Flag}'
+        - Flag: !Ref Flag
       GroupDescription: Security group for allowing accessing aplication from internet
       SecurityGroupIngress:
         - IpProtocol: tcp
@@ -47,13 +53,17 @@ Resources:
   TaskDefinition:
     Type: AWS::ECS::TaskDefinition
     Properties:
-      Family: cicd-deployment-example-task
+      Family: !Sub
+        - 'cicd-deployment-example-task-${Flag}'
+        - Flag: !Ref Flag
       Cpu: 256
       Memory: 512
       NetworkMode: awsvpc
       ExecutionRoleArn: !Ref ExecutionRole
       ContainerDefinitions:
-        - Name: cicd-deployment-example-container
+        - Name: !Sub
+          - 'cicd-deployment-example-container-${Flag}'
+          - Flag: !Ref Flag
           Image: !Ref ImageName
           PortMappings:
             - ContainerPort: 8000
@@ -69,7 +79,9 @@ Resources:
   Service:
     Type: AWS::ECS::Service
     Properties:
-      ServiceName: cicd-deployment-example-service
+      ServiceName: !Sub
+        - 'cicd-deployment-example-service-${Flag}'
+        - Flag: !Ref Flag
       Cluster: !Ref Cluster
       TaskDefinition: !Ref TaskDefinition
       DesiredCount: 1
