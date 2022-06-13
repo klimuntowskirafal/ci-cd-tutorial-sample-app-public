@@ -33,6 +33,31 @@ pipeline {
             }
             steps {
                 sh 'echo "Staging!"'
+                script {
+                    try {
+                        sh 'aws cloudformation create-stack \
+                        --stack-name cicd-example-stack-name-staging \
+                        --template-body file://./aws-cf-ecs-template.yaml \
+                        --capabilities CAPABILITY_NAMED_IAM \
+                        --region eu-central-1 \
+                        --parameters ParameterKey=SubnetID,ParameterValue=subnet-d76dc19b ParameterKey=ImageName,ParameterValue=025628008566.dkr.ecr.eu-central-1.amazonaws.com/flask-app-image:latest'
+                    }
+                    catch (AlreadyExistsException) {
+                        echo 'Stack already exist'
+                        echo 'Trying to update'
+                        try {
+                            sh 'aws cloudformation update-stack \
+                            --stack-name cicd-example-stack-name-staging \
+                            --template-body file://./aws-cf-ecs-template.yaml \
+                            --capabilities CAPABILITY_NAMED_IAM \
+                            --region eu-central-1 \
+                            --parameters ParameterKey=ImageName,UsePreviousValue=true ParameterKey=SubnetID,ParameterValue=subnet-d76dc19b'
+                        }
+                        catch (ValidationError) {
+                            echo 'Nothing to be updated on the staging stack'
+                        }
+                    }
+                }
             }
         }
         stage('Production') {
